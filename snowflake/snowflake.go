@@ -1,3 +1,4 @@
+// A distributed unique ID generator based on Twitter's snowflake service
 package snowflake
 
 import (
@@ -54,6 +55,10 @@ func (this *Snowflake) NextId() uint64 {
 		(this.datacenterId << datacenterIdShift) |
 		(this.workerId << workerIdShift) |
 		this.sequenceNumber
+}
+
+func (this *Snowflake) DatacenterId() uint64 {
+	return this.datacenterId
 }
 
 func (this *Snowflake) WorkerId() uint64 {
