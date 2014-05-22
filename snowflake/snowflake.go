@@ -15,15 +15,15 @@ var sequenceMask int64 = int64(1 << sequenceBits) - 1
 
 var twepoch int64 = 1288834974657
 
-type snowflake struct {
+type Snowflake struct {
 	workerId uint64
 	datacenterId uint64
 	sequenceNumber uint64
 	lastTimestamp int64
 }
 
-func NewSnowflake(datacenterId uint64, workerId uint64) *snowflake {
-	s := new(snowflake)
+func NewSnowflake(datacenterId uint64, workerId uint64) *Snowflake {
+	s := new(Snowflake)
 	s.datacenterId = datacenterId
 	s.workerId = workerId
 	s.sequenceNumber = 0
@@ -31,7 +31,7 @@ func NewSnowflake(datacenterId uint64, workerId uint64) *snowflake {
 	return s
 }
 
-func (this *snowflake) NextId() uint64 {
+func (this *Snowflake) NextId() uint64 {
 
 	timestamp := timeGen()
 
@@ -56,7 +56,7 @@ func (this *snowflake) NextId() uint64 {
 		this.sequenceNumber
 }
 
-func (this *snowflake) WorkerId() uint64 {
+func (this *Snowflake) WorkerId() uint64 {
 	return this.workerId
 }
 
